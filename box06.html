@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+
+     .container{
+      background-color: yellow;
+      padding: 5px;
+      box-sizing: border-box;
+      flex-flow: row wrap;
+      gap: 5px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+     }
+
+     .item{
+      background-color: aqua;
+     }
+
+     .item:nth-child(1) {
+      /* 가로 */
+      grid-column: 1 / span 2;
+      /* 세로 */
+      grid-row: 1 / span 2;
+    }
+
+    .item:nth-child(11) {
+      /* 가로 */
+      grid-column: 1 / span 2;
+      /* 세로 */
+      grid-row: 5 / span 2;
+    }
+
+     .item:nth-child(21) {
+      /* 가로 */
+      grid-column: 1 / span 2;
+      /* 세로 */
+      grid-row: 9 / span 2;
+    }
+
+    .item:nth-child(31) {
+      /* 가로 */
+      grid-column: 1 / span 2;
+      /* 세로 */
+      grid-row: 13 / span 2;
+    }
+
+    .item:nth-child(6) {
+      /* 가로 */
+      grid-column: 3 / span 2;
+      /* 세로 */
+      grid-row: 3 / span 2;
+    }
+
+    .item:nth-child(16) {
+      /* 가로 */
+      grid-column: 3 / span 2;
+      /* 세로 */
+      grid-row: 7 / span 2;
+    }
+
+    .item:nth-child(36) {
+      /* 가로 */
+      grid-column: 3 / span 2;
+      /* 세로 */
+      grid-row: 11 / span 2;
+    }
+
+    .item:nth-child(46) {
+      /* 가로 */
+      grid-column: 3 / span 2;
+      /* 세로 */
+      grid-row: 15 / span 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+  </div>
+
+  <div class="bigBox">
+    <div class="item bigList">big</div>
+    <div class="item bigList">big</div>
+    <div class="item bigList">big</div>
+    <div class="item bigList">big</div>
+    <div class="item bigList">big</div>
+    <div class="item bigList">big</div>
+    <div class="item bigList">big</div>
+  </div>
+  <div class="smallBox">
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+    <div class="item smallList">small</div>
+  </div>
+
+  <script>
+    const bigBox = $(".bigBox > div");
+    const smallBox = $(".smallBox > div");
+
+    $(".container").append(bigBox[0]);
+    $(".container").append(smallBox[0]);
+    $(".container").append(smallBox[1]);
+    $(".container").append(smallBox[2]);
+    $(".container").append(smallBox[3]);
+
+    let listNum;
+
+    let smallBoxListNum = (smallBox.length - (smallBox.length % 4))/4;
+    let bigBoxListNum = bigBox.length;
+    
+    // console.log("bigBox.length: " + bigBox.length);
+    // console.log("smallBoxListNum: " + smallBoxListNum);
+    // console.log("bigBoxListNum: " + bigBoxListNum);
+
+    if(bigBoxListNum > smallBoxListNum){
+      listNum = smallBoxListNum;
+    } else if (bigBoxListNum < smallBoxListNum){
+      listNum = bigBoxListNum;
+    } else {
+      listNum = bigBoxListNum;
+    }
+
+    // console.log("listNum: " + listNum);
+
+    for (let i = 0; i <= listNum-1; i++) {
+        $(".container").append(bigBox[i]);
+        let num = i * 4;
+        $(".container").append(smallBox[num]);
+        $(".container").append(smallBox[num + 1]);
+        $(".container").append(smallBox[num + 2]);
+        $(".container").append(smallBox[num + 3]);
+
+        let listNum1 = i * 10 + 1;
+        let listNum2 = i * 10 + 6;
+        let listNum3 = i * 4 + 1;
+        let listNum4 = i * 4 + 3;
+
+        console.log("i: " + i);
+        console.log("listNum1: " + listNum1);
+        console.log("listNum2: " + listNum2);
+        console.log("listNum3: " + listNum3);
+        console.log("listNum4: " + listNum4);
+
+        $(`.container div:nth-child(${listNum1})`).css("grid-area", "1 / " + listNum3 + " / span 2 / span 2");
+        $(`.container div:nth-child(${listNum2})`).css("grid-area", "3 / " + listNum4 + " / span 2 / span 2");
+
+    }
+  </script>
+</body>
+</html>

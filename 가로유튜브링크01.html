@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="ytplayer1"></div>
+  <div id="ytplayer2"></div>
+
+  <button class="target1">클릭1</button>
+  <button class="target2">클릭2</button>
+
+  <script>
+
+    // 유튜브 api 가져오기
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+    let videoCode = "gdo_GqxPhRA";
+    let test01;
+
+
+    if(test01){
+        test01 = false;
+    }else{
+        test01 = true;
+    }
+        
+
+    var player;
+    var player2;
+
+    function onYouTubePlayerAPIReady() {
+      player1 = new YT.Player('ytplayer1', {
+        height: '390',
+        width: '640',
+        videoId: videoCode,
+        events: {
+          'onStateChange': onPlayerStateChange,
+        }
+      });
+
+      player2 = new YT.Player('ytplayer2', {
+        height: '390',
+        width: '640',
+        videoId: videoCode,
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange,
+        }
+      });
+    }
+
+    function onPlayerStateChange(event) {
+
+        $(".target1").click(function(){
+          event.data == YT.PlayerState.PLAYING 
+          ? player1.pauseVideo()
+          : player1.playVideo();
+        });
+
+        $(".target2").click(function(){
+          event.data == YT.PlayerState.PLAYING 
+          ? player2.pauseVideo()
+          : player2.playVideo();
+        });
+
+      }
+
+
+    // 4. The API will call this function when the video player is ready.
+    function onPlayerReady(event) {
+      event.target.mute();
+      event.target.playVideo();
+    }
+  </script>
+</body>
+
+</html>

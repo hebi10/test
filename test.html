@@ -1,0 +1,280 @@
+<!--/script_scroll(1)/-->
+<div id="wrap">
+    <!--/include_header(1)/-->
+    <div id="contentWrapper">
+        <div id="contentWrap">
+            <!--/include_menu(1)/-->
+            <div id="content">
+                <div id="bbsData">
+                    <div class="page-body">
+                        <!-- 게시판 리스트 -->
+                        <div class="bbs-hd">
+                            <ul class="link">
+                                <!--/loop_top_board_list/-->
+                                <!--/if_idx(1)/-->
+                                <li class="last">
+                                <!--/else/-->
+                                <li>
+                                <!--/end_if/-->
+                                    <a href="<!--/top_board_list@link/-->"><!--/top_board_list@name/--></a>
+                                </li>
+                                <!--/end_loop/-->
+                            </ul>
+                        </div>
+                        <!-- //게시판 리스트 -->
+                        <div class="bbs-tit">
+                            <h3><!--/now_board_name/--></h3>
+                            <div class="bbs-sch">
+                            <!--/form_board/--><!-- .검색 폼시작 -->
+                                <fieldset>
+                                    <legend>게시판 검색 폼</legend>
+                                    <label>
+                                        <!--/radio_name/-->
+                                        이름
+                                    </label>
+                                    <label>
+                                        <!--/radio_subject/-->
+                                        제목
+                                    </label>
+                                    <label>
+                                        <!--/radio_content/-->
+                                        내용
+                                    </label>
+                                    <span class="key-wrap">
+                                        <!--/input_keyword/-->
+                                        <a href="<!--/link_search/-->"><img src="//image.makeshop.co.kr/makeshop/d3/basic_simple/bbs/btn_bbs_sch.gif" alt="검색" title="검색" /></a>
+                                    </span>
+                                </fieldset>
+                            <!--/end_form/--><!-- .검색 폼 끝 -->
+                            </div><!-- .bbs-sch -->
+                        </div>
+                        <!--/loop_list/-->
+                        <div class="bbs-visit-view">
+                            <div class="visit-vhd">
+                                <table summary="no, 제목, 수정및 삭제">
+                                    <caption>미니홈피 게시글 머릿글</caption>
+                                    <colgroup>
+                                        <col width="140" />
+                                        <col width="*" />
+                                        <col width="140" />
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <td><div class="tb-left tb-no">N0.<!--/list@number/--></div></td>
+                                            <td><div class="tb-center"><!--/list@subject(100)/--></div></td>
+                                            <td>
+                                                <div class="tb-center tb-ctrl">
+                                                    <a href="<!--/list@link_modify/-->" class="CSSbuttonWhite CSSbuttonMin">EDIT</a>
+                                                    <a href="<!--/list@link_delete/-->" class="CSSbuttonWhite CSSbuttonMin">DELETE</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div><!-- .visit-hd -->
+                            <div class="visit-vcont">
+                                <table summary="작성일, 작성자">
+                                    <caption>미니홈피 게시글 내용</caption>
+                                    <colgroup>
+                                        <col width="*" />
+                                    </colgroup>
+                                    <tbody>
+                                        <tr class="info no-line">
+                                            <td scope="row">
+                                                <div class="tb-left">
+                                                    <em>Date :</em> <!--/date(%Y.%M.%D %H:%i:%s)/list@date_write/--><br />
+                                                    <em>Name :</em> <!--/if_list@img_admin_icon/--><img src="<!--/list@img_admin_icon/-->"><!--/else/--><!--/list@writer/--><!--/end_if/-->
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><div class="tb-left tb-cont"><!--/if_list@attach_image/--><div class="tb-center"><img src="<!--/list@attach_image/-->"/></div><!--/end_if/--><br/><!--/list@content/--></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div><!-- .visit-cont -->
+                            <div class="visit-vcmt">
+                                <!--/list@block_comment/-->
+                                        <!--/if_comment/--> 
+                                <table summary="작성자, 작성일, 코멘트 내용">
+                                    <caption>미니홈피 게시글 코멘트</caption>
+                                    <colgroup>
+                                        <col width="*" />
+                                        <col width="150" />        
+                                    </colgroup>
+                                    <tbody>
+                                        <!--/loop_comment/-->
+                                        <tr>
+                                            <td class="tb-left">
+                                                <span class="com-name"><!--/if_comment@icon_sub_manager/--><!--/comment@icon_sub_manager/--><!--/else/--><!--/comment@writer/--><!--/end_if/--></span>
+                                                <span class="com-date"><!--/if_comment@write_date/--><!--/date(%Y.%M.%D %H:%i:%s)/comment@write_date/--><!--/end_if/--></span>
+                                                <div class="com-cont"><!--/if_comment@depth(+1)/--> <img src="/images/d3/modern_simple/common/icon_reple.gif" alt="" title="" style="margin-left: <!--/comment@depth/-->0px"/> <!--/end_if/--><!--/comment@content/--></div>
+                                            </td>
+                                            <td class="tb-center">
+                                                <div class="bbs-link">
+                                                    <span class="ctrl">
+                                                        <!--/if_comment@link_comment_click/--><a href="#" onclick="<!--/comment@link_comment_click/-->" class="CSSbuttonWhite CSSbuttonMin">REPLY</a><!--/end_if/-->
+				                                        <!--/if_not_comment@link_comment_click/-->
+                                                        <a href="#" onclick="<!--/comment@link_del_click/-->" class="CSSbuttonWhite CSSbuttonMin">DELETE</a>
+                                                        <!--/else/-->
+                                                        <a href="#" onclick="<!--/comment@link_del_click/-->" class="CSSbuttonWhite CSSbuttonMin">DELETE</a>
+                                                        <!--/end_if/-->
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <!--/end_loop/-->
+                                    </tbody>
+                                </table>
+                                <div class="paging">
+                                    <!--/if_pager_comment::first/-->
+                                        <a href="<!--/pager_comment::first@link/-->" class="first">&lt;&lt;</a>
+                                    <!--/end_if/-->
+                                    <!--/if_pager_comment::prev/-->
+                                        <a href="<!--/pager_comment::prev@link/-->" class="prev">&lt;</a>
+                                    <!--/end_if/-->
+                                    <!--/if_pager_comment/-->
+                                        <!--/loop_pager_comment::page/-->
+                                            <!--/if_pager_comment::page@current/-->
+                                        <a href="<!--/pager_comment::page@link/-->" class="now"><!--/pager_comment::page/--></a>
+                                            <!--/else/-->
+                                        <a href="<!--/pager_comment::page@link/-->"><!--/pager_comment::page/--></a>
+                                            <!--/end_if/-->
+                                        <!--/end_loop/-->
+                                    <!--/end_if/-->
+                                    <!--/if_pager_comment::next/-->
+                                        <a href="<!--/pager_comment::next@link/-->" class="next">&gt;</a>
+                                    <!--/end_if/-->
+                                    <!--/if_pager_comment::last/-->
+                                        <a href="<!--/pager_comment::last@link/-->" class="last">&gt;&gt;</a>
+                                    <!--/end_if/-->
+                                </div>
+                                    <!--/end_if/-->
+                                <!--/end_block/-->
+                            </div><!-- .visit-cmt -->
+                            <!--/if_comment_use/-->
+                            <div class="vist-vcmt-reg">
+                                <!--/list@form/-->
+                                    <fieldset>
+                                        <legend>코멘트 작성폼</legend>
+                                        <!--/if_not_login/-->
+                                            <!--/if_privercy_terms/-->
+                                                <!--/if_use_privacy/-->
+                                                    <div class="new-privercy-contract">
+                                                        <!--/new_privacy_terms/-->
+                                                    </div>
+                                                <!--/else/-->
+                                                    <!--/if_new_privercy_type/-->
+                                                        <div class="new-privercy-contract">
+                                                            <p>개인정보 수집에 대한 동의</p>
+                                                            <div class="privercy-contract-tap">
+                                                                <ul>
+                                                                    <li class="sel"><a href="#none">수집하는 개인정보 항목</a></li>
+                                                                    <li><a href="#none">개인정보의 수집 이용목적</a></li>
+                                                                    <li class="end"><a href="#none">개인정보의 보유 및 이용기간</a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="tab-content">
+                                                                <div class="privercy-contract"><textarea readonly><!--/privercy_terms1/--></textarea></div>
+                                                                <div class="privercy-contract" style="display: none;"><textarea readonly><!--/privercy_terms2/--></textarea></div>
+                                                                <div class="privercy-contract" style="display: none;"><textarea readonly><!--/privercy_terms3/--></textarea></div>
+                                                            </div>
+                                                            <div class="privercy-agree">
+                                                                <label><!--/radio_privercy_ok/--> 정보수집에 동의합니다.</label>
+                                                                <label><!--/radio_privercy_no/--> 동의하지 않습니다.</label>
+                                                            </div>
+                                                            <!--/if_third_party/-->
+                                                            <p>개인정보의 제3자 제공</p>
+                                                            <div class="privercy-contract"><textarea readonly><!--/third_party_terms/--></textarea></div>
+                                                            <div class="privercy-agree">
+                                                                <label><!--/radio_third_party_ok/--> 제3자 제공에 동의합니다.</label>
+                                                                <label><!--/radio_third_party_no/--> 동의하지 않습니다.</label>
+                                                            </div>
+                                                            <!--/end_if/-->
+                                                            <!--/if_trust/-->
+                                                            <p>개인정보 처리위탁안내</p>
+                                                            <div class="privercy-contract"><textarea readonly><!--/trust_terms/--></textarea></div>
+                                                            <div class="privercy-agree">
+                                                                <label><!--/radio_trust_ok/--> 처리위탁에 동의합니다.</label>
+                                                                <label><!--/radio_trust_no/--> 동의하지 않습니다.</label>
+                                                            </div>
+                                                            <!--/end_if/-->
+                                                        </div>
+                                                    <!--/else/-->
+                                                        <div class="new-privercy-contract">
+                                                            <p>개인정보 수집에 대한 동의</p>
+                                                            <div class="privercy-contract"><textarea readonly><!--/privercy_terms/--></textarea></div>
+                                                            <div class="privercy-agree">
+                                                                <label><!--/radio_privercy_ok/--> 정보수집에 동의합니다.</label>
+                                                                <label><!--/radio_privercy_no/-->동의하지 않습니다.</label>
+                                                            </div>
+                                                        </div>
+                                                    <!--/end_if/-->
+                                                <!--/end_if/-->
+                                            <!--/end_if/-->
+                                        <!--/end_if/-->
+                                        <table summary="작성자, 비밀번호, 코멘트 내용">
+                                            <caption>코멘트 작성</caption>
+                                            <colgroup>
+                                                <col width="*" />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="com-wrt-box">
+                                                        <div>
+                                                            <div class="wrt">
+                                                                <label>NAME</label><span><!--/list@input_nickname(txt-input input-style2)/--></span>
+                                                                <label>PASSWORD</label><span><!--/list@input_password(txt-input input-style2)/-->  <!--/if_list@checkbox_secret/--><label><!--/list@checkbox_secret/--> 운영자만 보기</label><!--/end_if/--></span>
+                                                            </div>
+                                                            <div class="wrt wrt_write"><!--/list@text_comment/--><a href="<!--/list@link_comment/-->" class="CSSbuttonBlack">댓글쓰기</a></div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    <fieldset>
+                                <!--/end_form/-->
+                            </div>
+                            <!--/end_if/-->
+                        </div><!-- .bbs-visit-view -->
+                        <!--/end_loop/-->
+                        
+                        <!-- 하단 페이징 & 버튼 -->
+                        <div class="bbs-btm">
+                            <div class="bbs-link"><a href="<!--/link_write/-->" class="CSSbuttonWhite">WRITE</a></div>
+                            <div class="bbs-paging">
+                                <div class="paging">
+                                    <!--/if_pager_list::first/-->
+                                        <a href="<!--/pager_list::first@link/-->" class="first">&lt;&lt;</a>
+                                    <!--/end_if/-->
+                                    <!--/if_pager_list::prev/-->
+                                        <a href="<!--/pager_list::prev@link/-->" class="prev">&lt;</a>
+                                    <!--/end_if/-->
+                                    <!--/if_pager_list/-->
+                                        <!--/loop_pager_list::page/-->
+                                            <!--/if_pager_list::page@current/-->
+                                        <a href="<!--/pager_list::page@link/-->" class="now"><!--/pager_list::page/--></a>
+                                            <!--/else/-->
+                                        <a href="<!--/pager_list::page@link/-->"><!--/pager_list::page/--></a>
+                                            <!--/end_if/-->
+                                        <!--/end_loop/-->
+                                    <!--/end_if/-->
+                                    <!--/if_pager_list::next/-->
+                                        <a href="<!--/pager_list::next@link/-->" class="next">&gt;</a>
+                                    <!--/end_if/-->
+                                    <!--/if_pager_list::last/-->
+                                        <a href="<!--/pager_list::last@link/-->" class="last">&gt;&gt;</a>
+                                    <!--/end_if/-->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //하단 페이징 & 버튼 -->
+                         
+                    </div><!-- .page-body -->
+                </div><!-- #bbsData -->
+            </div><!-- #content -->
+        </div><!-- #contentWrap -->
+    </div><!-- #contentWrapper-->
+    <hr />
+    <!--/include_footer(1)/-->
+</div><!-- #wrap -->

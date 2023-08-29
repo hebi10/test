@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    <!-- Demo styles -->
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0 auto;
+            padding: 0;
+            max-width: 640px;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .videoContainer{
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .video{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .target{
+            position: absolute;
+            left: 0;
+            top: 11%;
+            width: 100%;
+            height: 79%;
+        }
+
+        .ytp-expand-pause-overlay.ytp-shorts-mode .ytp-pause-overlay{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Swiper -->
+    <div class="swiper ytpSwiper">
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <div class="videoContainer">
+                    <div id="ytplayer1" class="video"></div>
+                    <div class="target1 target"></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="videoContainer">
+                    <div id="ytplayer2" class="video"></div>
+                    <div class="target2 target"></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="videoContainer">
+                    <div id="ytplayer3" class="video"></div>
+                    <div class="target3 target"></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="videoContainer">
+                    <div id="ytplayer4" class="video"></div>
+                    <div class="target4 target"></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="videoContainer">
+                    <div id="ytplayer5" class="video"></div>
+                    <div class="target5 target"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        // 유튜브 api 가져오기
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        let videoCode = "kx05y6zX3Ck";
+
+        let player1, player2, player3, player4, player5;
+
+        function onYouTubePlayerAPIReady() {
+            
+            console.log("확인");
+
+
+            player1 = new YT.Player('ytplayer1', {
+                videoId: videoCode,
+                playlist: videoCode,
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange1,
+                }
+            });
+
+            player2 = new YT.Player('ytplayer2', {
+                videoId: videoCode,
+                events: {
+                    'onStateChange': onPlayerStateChange2,
+                }
+            });
+
+            player3 = new YT.Player('ytplayer3', {
+                videoId: videoCode,
+                events: {
+                    'onStateChange': onPlayerStateChange3,
+                }
+            });
+
+            player4 = new YT.Player('ytplayer4', {
+                videoId: videoCode,
+                events: {
+                    'onStateChange': onPlayerStateChange4,
+                }
+            });
+
+            player5 = new YT.Player('ytplayer5', {
+                videoId: videoCode,
+                events: {
+                    'onStateChange': onPlayerStateChange5,
+                }
+            });
+        }
+
+        function onPlayerStateChange1(event) {
+
+            console.log(event.data);
+
+            swiper.off("transitionEnd").on('transitionEnd', async function() {
+                await player1.pauseVideo();
+                await player2.pauseVideo();
+                await player3.pauseVideo();
+                await player4.pauseVideo();
+                await player5.pauseVideo();
+                let num = await swiper.realIndex + 1;
+                let target = await $(`.target${num}`);
+                await target.trigger("click");
+            });
+
+            $(".target1").off("click").click(function(){
+                console.log(YT.PlayerState.PLAYING);
+                event.data == YT.PlayerState.PLAYING 
+                    ? player1.pauseVideo()
+                    : player1.playVideo();
+            });
+
+        }
+        
+        function onPlayerStateChange2(event) {
+
+            console.log(event.data);
+            
+            swiper.off("transitionEnd").on('transitionEnd', async function() {
+                await player1.pauseVideo();
+                await player2.pauseVideo();
+                await player3.pauseVideo();
+                await player4.pauseVideo();
+                await player5.pauseVideo();
+                let num = await swiper.realIndex + 1;
+                let target = await $(`.target${num}`);
+                await target.trigger("click");
+            });
+
+            $(".target2").off("click").click(function(){
+                event.data == YT.PlayerState.PLAYING 
+                    ? player2.pauseVideo()
+                    : player2.playVideo();
+            });
+
+        }
+        
+
+        function onPlayerStateChange3(event) {
+            
+            console.log(event.data);
+            
+            swiper.off("transitionEnd").on('transitionEnd', async function() {
+                await player1.pauseVideo();
+                await player2.pauseVideo();
+                await player3.pauseVideo();
+                await player4.pauseVideo();
+                await player5.pauseVideo();
+                let num = await swiper.realIndex + 1;
+                let target = await $(`.target${num}`);
+                await target.trigger("click");
+            });
+
+            $(".target3").off("click").click(function(){
+                event.data == YT.PlayerState.PLAYING 
+                    ? player3.pauseVideo()
+                    : player3.playVideo();
+            });
+
+        }
+        
+
+        function onPlayerStateChange4(event) {
+
+            console.log(event.data);
+            
+            swiper.off("transitionEnd").on('transitionEnd', async function() {
+                await player1.pauseVideo();
+                await player2.pauseVideo();
+                await player3.pauseVideo();
+                await player4.pauseVideo();
+                await player5.pauseVideo();
+                let num = await swiper.realIndex + 1;
+                let target = await $(`.target${num}`);
+                await target.trigger("click");
+            });
+
+            $(".target4").off("click").click(function(){
+                event.data == YT.PlayerState.PLAYING 
+                    ? player4.pauseVideo()
+                    : player4.playVideo();
+            });
+
+        }
+        
+
+        function onPlayerStateChange5(event) {
+
+            console.log(event.data);
+            
+            swiper.off("transitionEnd").on('transitionEnd', async function() {
+                await player1.pauseVideo();
+                await player2.pauseVideo();
+                await player3.pauseVideo();
+                await player4.pauseVideo();
+                await player5.pauseVideo();
+                let num = await swiper.realIndex + 1;
+                let target = await $(`.target${num}`);
+                await target.trigger("click");
+            });
+
+            $(".target5").off("click").click(function(){
+                event.data == YT.PlayerState.PLAYING 
+                    ? player5.pauseVideo()
+                    : player5.playVideo();
+            });
+
+        }
+
+        function onPlayerReady(event) {
+            event.target.mute();
+            event.target.playVideo();
+        }
+
+        var swiper = new Swiper(".ytpSwiper", {
+            direction: "vertical",
+            mousewheel: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    <!-- Demo styles -->
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0 auto;
+            padding: 0;
+            max-width: 640px;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .videoContainer{
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .video{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .target{
+            position: absolute;
+            left: 0;
+            top: 11%;
+            width: 100%;
+            height: 76%;
+        }
+
+        .ytp-expand-pause-overlay.ytp-shorts-mode .ytp-pause-overlay{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Swiper -->
+    <div class="swiper ytpSwiper">
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <div class="videoContainer">
+                    <div id="ytplayer1" class="video"></div>
+                    <div class="target1 target"></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="videoContainer">
+                    <div id="ytplayer2" class="video"></div>
+                    <div class="target2 target"></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="videoContainer">
+                    <div id="ytplayer3" class="video"></div>
+                    <div class="target3 target"></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="videoContainer">
+                    <div id="ytplayer4" class="video"></div>
+                    <div class="target4 target"></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="videoContainer">
+                    <div id="ytplayer5" class="video"></div>
+                    <div class="target5 target"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        // 유튜브 api 가져오기
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        let slide = $(".ytpSwiper .swiper-slide");
+
+        // let videoCode = "kx05y6zX3Ck";
+        let videoCode = [
+            "CHNeMSjnf0o", // 1
+            "rrda8zEYmmc", // 2
+            "-lKb8G9imMM", // 3
+            "kx05y6zX3Ck", // 4
+            "x3TRF_eJu18", // 5
+        ];
+
+        
+        for(let i = 1; i <= videoCode.length; i++){
+            $(".ytpSwiper .swiper-wrapper").append('<div class="swiper-slide"><div class="videoContainer"><div id="ytplayer' + i + '" class="video"></div><div class="target1 target"></div></div></div>');
+        }
+
+        // 플레이어 개수 설정 500개
+        for(let i = 1; i <= 500; i++){
+            eval("let player" + i);
+        };
+
+        function onYouTubePlayerAPIReady() {
+            for(let i = 1; i <= videoCode.length; i++){
+                eval("player" + i + " = new YT.Player('ytplayer" + i + "', {videoId: videoCode[" + (i - 1) + "],playlist: videoCode[" + (i - 1) + "],events: {'onReady': onPlayerReady,'onStateChange': onPlayerStateChange,}})");
+            }
+        }
+
+        function onPlayerStateChange(event) {
+            
+            swiper.off("transitionEnd").on('transitionEnd', function() {
+                for(let i = 1; i <= slide.length; i++){
+                    eval("player" + i + ".pauseVideo()");
+                };
+
+                let num = swiper.realIndex + 1;
+                eval("player" + num + ".playVideo()");
+            });
+
+            for(let i = 1; i <= slide.length; i++){
+                $(`.target${i}`).off("click").click(function(){
+                    event.data == YT.PlayerState.PLAYING 
+                        ? eval("player" + i + ".pauseVideo()")
+                        : eval("player" + i + ".playVideo()");
+                });
+            };
+        }  
+
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        window.onload = function(){
+            swiper.slideTo(2, 1000, false); // 사이트 로드시 슬라이드 3번으로 이동
+        }
+
+        var swiper = new Swiper(".ytpSwiper", {
+            direction: "vertical",
+            mousewheel: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+
+
+    </script>
+</body>
+
+</html>
