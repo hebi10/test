@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <style>
+        body #contentWrapper {
+            padding-top: 124px;
+            margin: 0;
+        }
+    
+        .swiper.ytpSwiper {
+            width: 393.75px;
+            height: 700px;
+            margin: 0 auto;
+        }
+    
+        .contentBoxList {
+            max-width: 911px;
+            width: 100%;
+            margin: 0 auto;
+        }
+    
+        .contentBox::after {
+            content: '';
+            display: block;
+            width: 100%;
+            padding-bottom: 179.912%;
+        }
+    
+        .contentLink {
+            display: flex;
+            justify-content: center;
+            padding: 50px 0 33px;
+        }
+    
+        .contentLink a {
+            font-size: 18px;
+            padding: 0 30px 7px;
+        }
+    
+        .contentLink .act {
+            border-bottom: 3px solid #512772;
+    
+        }
+    
+        .ytpSwiper .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .ytpSwiper .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    
+        .videoContainer {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+    
+        .video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    
+        .target {
+            background: url('//jstyle07.jpg3.kr/SITE/ECC/2023/overLayout.jpg') no-repeat center / contain;
+            opacity: 0;
+            position: absolute;
+            left: 0;
+            top: 11%;
+            width: 100%;
+            height: 76%;
+            transition: .3s;
+        }
+    
+        .target.active {
+            opacity: 1;
+        }
+    
+        .ytp-expand-pause-overlay.ytp-shorts-mode .ytp-pause-overlay {
+            display: none;
+        }
+    
+        .swiper-pagination-bullet {
+            background: var(--swiper-pagination-bullet-inactive-color, #fff);
+            opacity: var(--swiper-pagination-bullet-inactive-opacity, .3);
+        }
+    
+        .swiper-pagination-bullet-active {
+            background: var(--swiper-pagination-bullet-inactive-color, #fff);
+            opacity: var(--swiper-pagination-bullet-inactive-opacity, 1);
+        }
+    
+        .closeBtn {
+            position: absolute;
+            top: 105px;
+            right: 31%;
+            z-index: 10;
+            cursor: pointer;
+        }
+    
+        :root {
+            --swiper-theme-color: #512772 !important;
+        }
+    </style>
+
+    <!--/script_scroll(1)/-->
+<div id="wrap">
+    <!--/include_header(1)/-->
+    <div id="contentWrapper">
+    
+    <img style="width: 100%;" src="//jstyle07.jpg3.kr/SITE/ECC/2023/top_title.jpg" alt="top img">
+    
+        <div id="contentWrap">
+            <div id="content">
+
+
+    <div class="contentBoxList">
+    
+    
+        <div class="contentLink">
+            <a href="/shop/page.html?id=139"  class="act">모아보기</a>
+            <a href="/board/board.html?s_id=&code=jstyle07_hompee4&targetNum=all&page=1&type=s&board_cate=&review_type=&ssubject=ok&stext=shorting">탐색</a>
+        </div>
+
+
+        <!-- Swiper -->
+        <div class="swiper ytpSwiper">
+            <div class="swiper-wrapper">
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <img onclick="history.back()" class="closeBtn" src="//jstyle07.jpg3.kr/SITE/ECC/2023/close.png" alt="top img">
+        
+        
+    </div><!-- #contentWrapper -->
+            
+           
+            </div><!-- #content -->
+            <hr />
+        </div><!-- #contentWrap -->
+    </div><!-- #contentWrapper -->
+    <hr />
+    <!--/include_footer(1)/-->
+</div><!-- #wrap -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("html, body").stop().animate({ scrollTop: "210px" }, 500);
+
+        const urlParams = new URL(location.href).searchParams;
+        const nummer = urlParams.get('listLength');
+        console.log(nummer);
+
+        swiper.slideTo(nummer, 1000, false); // 사이트 로드시 선택 슬라이드(0 = 1번, 1 = 2번...)로 이동
+    });
+
+    // let videoCode = "kx05y6zX3Ck";
+    let videoCode = [
+        "5Vc8EGZ-WBQ",
+        "lj0HsH0Oo-I",
+        "w5XRTaIMh3o",
+        "2pP3jTAhDmE",
+        "7rBtQ4B2sUA",
+        "OZ8ToOX8NfI",
+        "Re-ut8kWZ7I",
+        "Q4dK6sh1_Bo",
+        "HvSaI3Byq8Y",
+        "8gc-yfJ6MWA",
+        "_UnZr33vWck",
+        "CHNeMSjnf0o",
+        "rrda8zEYmmc",
+        "-lKb8G9imMM",
+        "kx05y6zX3Ck",
+        "x3TRF_eJu18",
+        "3JAZCYoorxI",
+        "-naVVjEJ-hE",
+        "o3V0UQ1za3s",
+        "phy0_ilLTT8",
+    ];
+
+
+    for (let i = 1; i <= videoCode.length; i++) {
+        $(".ytpSwiper .swiper-wrapper").append(`<div class="swiper-slide"><div class="videoContainer"><div id="ytplayer${i}" class="video"></div><div class="target${i} target"></div></div></div>`);
+    }
+
+
+    // 유튜브 api 가져오기
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    let slide = $(".ytpSwiper .swiper-slide");
+
+    // 플레이어 최대 개수 설정 500개
+    for (let i = 1; i <= 500; i++) {
+        eval("let player" + i);
+    };
+
+    function onYouTubePlayerAPIReady() {
+        for (let i = 1; i <= videoCode.length; i++) {
+            eval("player" + i + " = new YT.Player('ytplayer" + i + "', {videoId: videoCode[" + (i - 1) + "], playerVars:{loop: true,playlist: videoCode[" + (i - 1) + "]},events: {'onReady': onPlayerReady,'onStateChange': onPlayerStateChange,}})");
+        };
+    };
+
+    function onPlayerStateChange(event) {
+
+        swiper.off("transitionEnd").on('transitionEnd', function () {
+
+            let num = swiper.realIndex + 1;
+
+            for (let i = 1; i <= slide.length; i++) {
+                eval("player" + i + ".pauseVideo()");
+                $(`.target${num}`).addClass("active");
+            };
+
+            eval("player" + num + ".playVideo()");
+            $(`.target${num}`).removeClass("active");
+        });
+
+        for (let i = 1; i <= slide.length; i++) {
+            $(`.target${i}`).off("click").click(function () {
+                event.data == YT.PlayerState.PLAYING
+                    ? eval("player" + i + ".pauseVideo()")
+                    : eval("player" + i + ".playVideo()");
+
+                event.data == YT.PlayerState.PLAYING
+                    ? $(`.target${i}`).addClass("active")
+                    : $(`.target${i}`).removeClass("active");
+            });
+        };
+    }
+
+    function onPlayerReady(event) {
+        event.target.playVideo();
+    };
+
+    var swiper = new Swiper(".ytpSwiper", {
+        direction: "vertical",
+        mousewheel: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+
+
+</script>
+
+</body>
+</html>
